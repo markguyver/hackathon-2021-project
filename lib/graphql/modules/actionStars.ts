@@ -1,4 +1,5 @@
 import { gql, createModule } from 'graphql-modules';
+import { ActionStar } from '../../models/actionStars';
 
 export default createModule({
     id: 'ActionStars',
@@ -6,7 +7,7 @@ export default createModule({
     typeDefs: gql`
         extend type Query {
             actionStarById(id: ID!): ActionStar
-            actionStarByRandom: ActionStar!
+            actionStarByRandom: ActionStar
         }
 
         type ActionStar {
@@ -17,14 +18,18 @@ export default createModule({
     `,
     resolvers: {
         Query: {
-            actionStarById: (parent: undefined, args: { id: number; }) => ({
-                id: args.id as number,
-                name: 'Get By ID Placeholder',
-            }),
-            actionStarByRandom: () => ({
-                id: -1,
-                name: 'Random Placeholder',
-            }),
+            actionStarById: async (parent: undefined, args: { id: number; }) => {
+                const retrievedStar = await ActionStar.findOne({
+                    where: { id: args.id },
+                });
+                return retrievedStar ? retrievedStar.toJSON() : null;
+            },
+            actionStarByRandom: async () => {
+                const retrievedStar = await ActionStar.findOne({
+                    order: ActionStar.sequelize?.random(),
+                });
+                return retrievedStar ? retrievedStar.toJSON() : null;
+            },
         },
     },
 });

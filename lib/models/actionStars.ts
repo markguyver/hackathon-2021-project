@@ -24,5 +24,7 @@ export default (sequelizeInstance: Sequelize) => {
         sequelize: sequelizeInstance,
         modelName: 'ActionStar',
         tableName: 'action_stars',
+        timestamps: false,
+        paranoid: false,
     });
 };
