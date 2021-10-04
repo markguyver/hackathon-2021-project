@@ -12,6 +12,7 @@ export default createModule({
         type ActionStar {
             id: ID!
             name: String!
+            dob: String
         }
     `,
     resolvers: {

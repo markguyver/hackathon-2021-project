@@ -9,6 +9,8 @@ services:
       - CACHE_GRAPHQL_PARSE=true
       - CACHE_GRAPHQL_RESPONSE=true
       - CACHE_GRAPHQL_VALIDATION=true
+      - DB_HOST=database
+      - DB_SCHEMA=hackathon
     image: hackathon
     networks:
       - hackathon
@@ -17,5 +19,19 @@ services:
       - 9229:9229
     volumes:
       - ./:/var/node
+  database:
+    container_name: hackathon-database
+    environment:
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
+      - MARIADB_DATABASE=hackathon
+    image: mariadb:10.6.4
+    networks:
+      - hackathon
+    ports:
+      - 3306:3306/tcp
+    volumes:
+      - mariadb-data:/var/lib/mysql
 networks:
   hackathon:
+volumes:
+  mariadb-data:

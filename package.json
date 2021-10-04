@@ -4,6 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"db:migrate": "sequelize-cli --config /var/node/database/config/config.json --migrations-path /var/node/database/migrations db:migrate",
+		"db:migrate:rollback": "sequelize-cli --config /var/node/database/config/config.json --migrations-path /var/node/database/migrations db:migrate:undo",
+		"db:seed": "sequelize-cli --config /var/node/database/config/config.json --seeders-path /var/node/database/seeders db:seed:all",
 		"start": "NODE_ENV=production; ts-node server/index.ts",
 		"start:dev": "NODE_ENV=development; ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only server/index.ts"
 	},
@@ -19,11 +22,14 @@
 		"graphql": "^15.6.0",
 		"graphql-helix": "^1.8.0",
 		"graphql-modules": "^1.4.4",
+		"mysql2": "^2.3.0",
+		"sequelize": "^6.6.5",
 		"ts-node": "^10.2.1",
 		"typescript": "^4.4.3"
 	},
 	"devDependencies": {
 		"@types/node": "^16.10.2",
+		"sequelize-cli": "^6.2.0",
 		"ts-node-dev": "^1.1.8"
 	}
 }

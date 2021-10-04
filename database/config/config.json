@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "hackathon",
+    "host": "hackathon-database",
+    "dialect": "mysql"
+  }
+}

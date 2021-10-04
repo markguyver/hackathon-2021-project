@@ -12,9 +12,18 @@ export interface GraphqlConfiguration {
     validationCache: boolean;
 }
 
+interface DatabaseConfiguration {
+    host: string;
+    port: number;
+    username: string;
+    password: string;
+    schema: string;
+}
+
 export interface ApplicationConfig {
     fastify: FastifyConfiguration;
     graphql: GraphqlConfiguration;
+    database: DatabaseConfiguration;
 }
 
 const defaultConfig: ApplicationConfig = {
@@ -31,6 +40,13 @@ const defaultConfig: ApplicationConfig = {
         parserCache: process.env.CACHE_GRAPHQL_PARSE === 'true',
         responseCache: process.env.CACHE_GRAPHQL_RESPONSE === 'true',
         validationCache: process.env.CACHE_GRAPHQL_VALIDATION === 'true',
+    },
+    database: {
+        host: process.env.DB_HOST!,
+        port: parseInt(String(process.env.DB_PORT).toString()) || 3306,
+        username: process.env.DB_USER || 'root',
+        password: process.env.DB_PASSWORD || '',
+        schema: process.env.DB_SCHEMA!,
     },
 };
 
