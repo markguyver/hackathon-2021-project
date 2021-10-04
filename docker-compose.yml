@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+	api:
+        command: ['npm', 'run', 'start:dev']
+		environment:
+			- LOG_LEVEL=debug
+		networks:
+			- hackathon
+        ports:
+            - 3000:3000
+            - 9229:9229
+		volumes:
+			- ./lib:/var/node/lib
+			- ./server:/var/node/server
+network:
+	hackathon:
