@@ -6,6 +6,9 @@ services:
     container_name: hackathon
     environment:
       - LOG_LEVEL=debug
+      - CACHE_GRAPHQL_PARSE=true
+      - CACHE_GRAPHQL_RESPONSE=true
+      - CACHE_GRAPHQL_VALIDATION=true
     image: hackathon
     networks:
       - hackathon
@@ -13,7 +16,6 @@ services:
       - 3000:3000
       - 9229:9229
     volumes:
-      - ./lib:/var/node/lib
-      - ./server:/var/node/server
+      - ./:/var/node
 networks:
   hackathon:

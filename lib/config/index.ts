@@ -1,11 +1,20 @@
 import { FastifyServerOptions } from 'fastify';
 
+interface FastifyConfiguration {
+    host: string;
+    port: number;
+    options: FastifyServerOptions;
+}
+
+export interface GraphqlConfiguration {
+    parserCache: boolean;
+    responseCache: boolean;
+    validationCache: boolean;
+}
+
 export interface ApplicationConfig {
-    fastify: {
-        host: string;
-        port: number;
-        options: FastifyServerOptions;
-    }
+    fastify: FastifyConfiguration;
+    graphql: GraphqlConfiguration;
 }
 
 const defaultConfig: ApplicationConfig = {
@@ -17,7 +26,12 @@ const defaultConfig: ApplicationConfig = {
                 level: process.env.LOG_LEVEL || 'info',
             },
         },
-    }
+    },
+    graphql: {
+        parserCache: process.env.CACHE_GRAPHQL_PARSE === 'true',
+        responseCache: process.env.CACHE_GRAPHQL_RESPONSE === 'true',
+        validationCache: process.env.CACHE_GRAPHQL_VALIDATION === 'true',
+    },
 };
 
 export default defaultConfig;

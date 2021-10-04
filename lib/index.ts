@@ -5,7 +5,7 @@ import registerRestfulRoutes from './routes';
 
 const buildApplication = async (config: ApplicationConfig): Promise<FastifyInstance> => {
     const application = fastify(config.fastify.options);
-    await registerGraphql(application);
+    await registerGraphql(application, config);
     registerRestfulRoutes(application);
     return application;
 };
