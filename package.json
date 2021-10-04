@@ -1,8 +1,8 @@
 {
-	"name": "node",
+	"name": "hackathon-2021-project",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
+	"description": "A simple GraphQL API (in Fastify) using GraphQL Helix and exploring Envelop for (caching) plugins.",
+	"main": "dist/server/index.js",
 	"scripts": {
 		"db:migrate": "sequelize-cli --config /var/node/database/config/config.json --migrations-path /var/node/database/migrations db:migrate",
 		"db:migrate:rollback": "sequelize-cli --config /var/node/database/config/config.json --migrations-path /var/node/database/migrations db:migrate:undo",
@@ -10,7 +10,7 @@
 		"start": "NODE_ENV=production; ts-node server/index.ts",
 		"start:dev": "NODE_ENV=development; ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only server/index.ts"
 	},
-	"author": "",
+	"author": "Mark Chavez <mark.chavez@pager.com>",
 	"license": "ISC",
 	"dependencies": {
 		"@envelop/core": "^1.2.0",
