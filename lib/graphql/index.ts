@@ -3,12 +3,14 @@ import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { getGraphQLParameters, processRequest } from 'graphql-helix';
 import { createApplication } from 'graphql-modules';
 
-import { ApplicationConfig, GraphqlConfiguration } from '../config';
+import { ApplicationConfig } from '../config';
 import getEnvelopedPlugins from './plugins';
+import ActionStarsModule from './modules/actionStars';
 import HelloWorldModule from './modules/hello';
 
 const graphqlApplication = createApplication({ modules: [
     HelloWorldModule,
+    ActionStarsModule,
 ] });
 const envelopReadyApplication = useGraphQLModules(graphqlApplication);
 
