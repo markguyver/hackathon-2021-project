@@ -1,10 +1,8 @@
 import { FastifyInstance } from 'fastify';
 import AltairFastify from 'altair-fastify-plugin';
 
-import { ApplicationConfig } from '../config';
-
-export default (application: FastifyInstance, config: ApplicationConfig) => {
-    if (config.graphql.useAltair) {
+export default (application: FastifyInstance) => {
+    if (application.appConfig.graphql.useAltair) {
         application.register(AltairFastify, {
             path: '/altair',
             baseURL: '/altair/',

@@ -4,7 +4,6 @@ import { getGraphQLParameters, processRequest } from 'graphql-helix';
 import { createApplication } from 'graphql-modules';
 import mercurius from 'mercurius';
 
-import { ApplicationConfig } from '../config';
 import getEnvelopedPlugins from './plugins.envelop';
 import ActionStarsModule from './modules/actionStars';
 import HelloWorldModule from './modules/hello';
@@ -14,9 +13,9 @@ const graphqlApplication = createApplication({ modules: [
     ActionStarsModule,
 ] });
 
-const registerEnvelop = (application: FastifyInstance, config: ApplicationConfig) => {
+const registerEnvelop = (application: FastifyInstance) => {
     const envelopReadyApplication = useGraphQLModules(graphqlApplication);
-    const getEnveloped = getEnvelopedPlugins([ envelopReadyApplication ], config.graphql.envelopPluginSettings);
+    const getEnveloped = getEnvelopedPlugins([ envelopReadyApplication ], application.appConfig.graphql.envelopPluginSettings);
     application.route({
         method: ['POST'],
         url: '/graphql',
@@ -44,16 +43,16 @@ const registerEnvelop = (application: FastifyInstance, config: ApplicationConfig
     });
 };
 
-const registerMercurius = (application: FastifyInstance, config: ApplicationConfig) => {
+const registerMercurius = (application: FastifyInstance) => {
     application.register(mercurius, {
         schema: graphqlApplication.createSchemaForApollo(),
     });
 };
 
-export default async (application: FastifyInstance, config: ApplicationConfig) => {
-    if (config.graphql.useEnvelop) {
-        registerEnvelop(application, config);
+export default async (application: FastifyInstance) => {
+    if (application.appConfig.graphql.useEnvelop) {
+        registerEnvelop(application);
     } else {
-        registerMercurius(application, config);
+        registerMercurius(application);
     }
 };

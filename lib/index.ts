@@ -7,12 +7,21 @@ import registerDatabaseModels from './models';
 import registerPlugins from './plugins';
 import registerRestfulRoutes from './routes';
 
+declare module 'fastify' {
+    interface FastifyInstance {
+        appConfig: ApplicationConfig;
+    }
+}
+
 const buildApplication = async (config: ApplicationConfig): Promise<FastifyInstance> => {
     const application = fastify(config.fastify.options);
-    registerDatabaseModels(application, config);
-    await registerGraphql(application, config);
-    registerPlugins(application, config);
+    application.decorate('appConfig', config);
+
+    registerDatabaseModels(application);
+    await registerGraphql(application);
+    registerPlugins(application);
     registerRestfulRoutes(application);
+
     return application;
 };
 
