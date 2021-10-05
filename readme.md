@@ -2,7 +2,7 @@
 
 This project is a playground for evaluating [Mercurius](https://mercurius.dev/) vs [GraphQL Helix](https://github.com/contrawork/graphql-helix#readme) (_with [Envelop](https://www.envelop.dev/)_) for performance (_both within [Fastify](https://www.fastify.io/)_) as well as learning about the benefits that the [Envelop](https://www.envelop.dev/) framework offers (_i.e. plugins_).
 
-## To Use the Playground
+## To Run the Playground
 
 1.  Start the database container with:
     ```
@@ -20,6 +20,28 @@ This project is a playground for evaluating [Mercurius](https://mercurius.dev/) 
 1.  Start the API server:
     ```
     docker-compose up api
+    ```
+
+## To Use the Playground
+
+Once you have the database and API containers running, there are 3 endpoints you can query with your tool of choice (_i.e. [Insomnia](https://insomnia.rest/), [Postman](https://www.postman.com/), [Altair](https://altair.sirmuel.design/), etc._):
+
+*   **Health Check** (_RESTful_): Basic health-check endpoint that responds if the server is alive.
+
+    ```
+    GET http://localhost:3000/
+    ```
+
+*   **Database Query Cache Reset** (_RESTful_): An endpoint for clearing the query cache in the database (_to be run before performing Gatling benchmarking_).
+
+    ```
+    GET http://localhost:3000/reset
+    ```
+
+*   **GraphQL** (_GraphQL_): The endpoint powered by the different GraphQL engines this playground is exploring.
+
+    ```
+    POST http://localhost:3000/graphql
     ```
 
 ## Things to Note
