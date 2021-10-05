@@ -22,6 +22,7 @@
 		"graphql": "^15.6.0",
 		"graphql-helix": "^1.8.0",
 		"graphql-modules": "^1.4.4",
+		"mercurius": "^8.4.2",
 		"mysql2": "^2.3.0",
 		"sequelize": "^6.6.5",
 		"ts-node": "^10.2.1",

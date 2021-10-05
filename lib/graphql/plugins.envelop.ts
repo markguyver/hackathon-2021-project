@@ -3,9 +3,9 @@ import { useParserCache } from '@envelop/parser-cache';
 import { useResponseCache } from '@envelop/response-cache';
 import { useValidationCache } from '@envelop/validation-cache';
 
-import { GraphqlConfiguration } from '../config';
+import { envelopPluginSettings } from '../config';
 
-const getEnvelopPluginsList = (plugins: Plugin[], config: GraphqlConfiguration): Plugin[] => {
+const getEnvelopPluginsList = (plugins: Plugin[], config: envelopPluginSettings): Plugin[] => {
     plugins.push( useLogger() );
     plugins.push( useTiming() );
     if (config.parserCache) {
@@ -20,7 +20,7 @@ const getEnvelopPluginsList = (plugins: Plugin[], config: GraphqlConfiguration):
     return plugins;
 };
 
-const getEnvelopedPlugins = (plugins: Plugin[], config: GraphqlConfiguration) => envelop({
+const getEnvelopedPlugins = (plugins: Plugin[], config: envelopPluginSettings) => envelop({
     plugins: getEnvelopPluginsList(plugins, config),
 });
 

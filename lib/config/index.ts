@@ -6,10 +6,15 @@ interface FastifyConfiguration {
     options: FastifyServerOptions;
 }
 
-export interface GraphqlConfiguration {
+export interface envelopPluginSettings {
     parserCache: boolean;
     responseCache: boolean;
     validationCache: boolean;
+}
+
+interface GraphqlConfiguration {
+    useEnvelop: boolean;
+    envelopPluginSettings: envelopPluginSettings;
 }
 
 interface DatabaseConfiguration {
@@ -37,9 +42,12 @@ const defaultConfig: ApplicationConfig = {
         },
     },
     graphql: {
-        parserCache: process.env.CACHE_GRAPHQL_PARSE === 'true',
-        responseCache: process.env.CACHE_GRAPHQL_RESPONSE === 'true',
-        validationCache: process.env.CACHE_GRAPHQL_VALIDATION === 'true',
+        useEnvelop: process.env.APP_USE_ENVELOP === 'true',
+        envelopPluginSettings: {
+            parserCache: process.env.CACHE_GRAPHQL_PARSE === 'true',
+            responseCache: process.env.CACHE_GRAPHQL_RESPONSE === 'true',
+            validationCache: process.env.CACHE_GRAPHQL_VALIDATION === 'true',
+        },
     },
     database: {
         host: process.env.DB_HOST!,
