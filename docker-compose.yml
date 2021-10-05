@@ -1,4 +1,5 @@
 version: '3.7'
+
 services:
   api: &base_application
     build: ./
@@ -26,6 +27,16 @@ services:
       - 9229:9229
     volumes:
       - ./:/var/node
+
+  migrations:
+    << : *base_application
+    command: ['npm', 'run', 'db:migrate']
+    container_name: hackathon-ops-migrations
+
+  seeder:
+    << : *base_application
+    command: ['npm', 'run', 'db:seed']
+    container_name: hackathon-ops-seeder
 
   database:
     container_name: hackathon-database
