@@ -13,6 +13,7 @@ export interface envelopPluginSettings {
 }
 
 interface GraphqlConfiguration {
+    useAltair: boolean;
     useEnvelop: boolean;
     envelopPluginSettings: envelopPluginSettings;
 }
@@ -42,6 +43,7 @@ const defaultConfig: ApplicationConfig = {
         },
     },
     graphql: {
+        useAltair: process.env.APP_USE_ALTAIR === 'true',
         useEnvelop: process.env.APP_USE_ENVELOP === 'true',
         envelopPluginSettings: {
             parserCache: process.env.CACHE_GRAPHQL_PARSE === 'true',

@@ -18,6 +18,7 @@
 		"@envelop/parser-cache": "^1.0.1",
 		"@envelop/response-cache": "^0.2.1",
 		"@envelop/validation-cache": "^1.0.1",
+		"altair-fastify-plugin": "^4.0.11",
 		"fastify": "^3.22.0",
 		"graphql": "^15.6.0",
 		"graphql-helix": "^1.8.0",

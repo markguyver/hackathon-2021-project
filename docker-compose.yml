@@ -6,6 +6,7 @@ services:
     container_name: hackathon
     environment:
       - LOG_LEVEL=debug
+      - APP_USE_ALTAIR=true
       - APP_USE_ENVELOP=true
       - CACHE_GRAPHQL_PARSE=true
       - CACHE_GRAPHQL_RESPONSE=true

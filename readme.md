@@ -44,6 +44,12 @@ Once you have the database and API containers running, there are 3 endpoints you
     POST http://localhost:3000/graphql
     ```
 
+*   **Altair** (_Webpage_): An interactive UI that you can use to interact with the GraphQL endpoint.
+
+    ```
+    GET http://localhost:3000/altair
+    ```
+
 ## Things to Note
 
 There are a few things that can be changed about the API which are set via environment variables.
