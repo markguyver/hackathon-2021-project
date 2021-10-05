@@ -18,7 +18,7 @@ class Hackathon2021Simulation extends Simulation {
   val graphqlQueryPrefix = """{ "query" : "query { actionStarById (id: """
   val graphqlQuerySuffix = """) { id name dob } }" }"""
 
-  val scn = scenario("RecordedSimulation")
+  val scn = scenario("Hackathon2021Simulation")
     .exec(
       http("request_0")
         .post("/graphql")
