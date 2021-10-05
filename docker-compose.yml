@@ -1,11 +1,11 @@
-version: "3.7"
+version: '3.7'
 services:
-  api:
+  api: &base_application
     build: ./
-    command: ['npm', 'run', 'start:dev']
     container_name: hackathon
     environment:
       - LOG_LEVEL=debug
+      - APP_USE_ENVELOP=true
       - CACHE_GRAPHQL_PARSE=true
       - CACHE_GRAPHQL_RESPONSE=true
       - CACHE_GRAPHQL_VALIDATION=true
@@ -16,9 +16,17 @@ services:
       - hackathon
     ports:
       - 3000:3000
+
+  api-dev:
+    << : *base_application
+    command: ['npm', 'run', 'start:dev']
+    container_name: hackathon-dev
+    ports:
+      - 3000:3000
       - 9229:9229
     volumes:
       - ./:/var/node
+
   database:
     container_name: hackathon-database
     environment:
@@ -31,7 +39,9 @@ services:
       - 3306:3306/tcp
     volumes:
       - mariadb-data:/var/lib/mysql
+
 networks:
   hackathon:
+
 volumes:
   mariadb-data:
