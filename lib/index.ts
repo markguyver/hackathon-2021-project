@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import fastify, { FastifyInstance } from 'fastify';
 import { ApplicationConfig } from './config';
 import registerGraphql from './graphql';

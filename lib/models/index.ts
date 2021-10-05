@@ -1,5 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { Sequelize } from 'sequelize';
+import { container } from 'tsyringe';
 
 import { ApplicationConfig } from '../config';
 import registerActionStarsModel from './actionStars';
@@ -11,4 +12,5 @@ export default (application: FastifyInstance, config: ApplicationConfig) => {
         logging: message => application.log.info({ source: 'Sequelize' }, message),
     });
     registerActionStarsModel(sequelizeInstance);
+    container.register(Sequelize, { useValue: sequelizeInstance });
 };
