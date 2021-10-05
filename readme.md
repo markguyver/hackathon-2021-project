@@ -1,6 +1,6 @@
 # Hackathon 2021
 
-This project is a playground for evaluating [Mercurius](https://mercurius.dev/) vs [GraphQL Helix](https://github.com/contrawork/graphql-helix#readme) (_with [Envelop](https://www.envelop.dev/)_) for performance (_both within [Fastify](https://www.fastify.io/)_) as well as learning about the benefits that the [Envelop](https://www.envelop.dev/) framework offers (_i.e. plugins_).
+This project is a playground for evaluating [Mercurius](https://mercurius.dev/) (_no [Envelop](https://www.envelop.dev/)_) vs [GraphQL Helix](https://github.com/contrawork/graphql-helix#readme) (_with [Envelop](https://www.envelop.dev/)_) for performance (_both within [Fastify](https://www.fastify.io/)_) as well as learning about the benefits that the [Envelop](https://www.envelop.dev/) framework offers (_i.e. plugins_).
 
 ## To Run the Playground
 
